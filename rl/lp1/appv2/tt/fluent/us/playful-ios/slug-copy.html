@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reward Page</title>
+  <style>
+    :root {
+      --brand-color: #FAC804;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #fbe5c6;
+      padding: 20px;
+      margin: 0;
+    }
+    .page-container {
+      display: flex;
+      justify-content: center;
+    }
+    .reward-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1rem;
+      max-width: 450px;
+      width: 100%;
+      border: 1px solid color-mix(in srgb, var(--brand-color) 25%, white);
+      box-shadow:
+        0 10px 30px color-mix(in srgb, var(--brand-color) 15%, transparent),
+        0 1px 8px color-mix(in srgb, var(--brand-color) 30%, transparent);
+    }
+    .app-logo {
+      width: 100px;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--brand-color) 40%, transparent));
+    }
+    .cash-text {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #040404;
+      text-shadow: 0 4px 20px color-mix(in srgb, var(--brand-color) 30%, transparent);
+    }
+    .claim-button {
+      background: var(--brand-color);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      width: 100%;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .claim-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px color-mix(in srgb, var(--brand-color) 40%, transparent);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="reward-card">
+      <img id="logo" class="app-logo" />
+      <div class="cash-text" id="headline">Loading...</div>
+      <button id="claimButton" class="claim-button">Continue</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('/config');
+        const config = await res.json();
+
+        const logo = document.getElementById('logo');
+        if (logo && config.logoPath) logo.src = config.logoPath;
+
+        const headline = document.getElementById('headline');
+        if (headline && config.headline) headline.textContent = config.headline;
+
+        const btn = document.getElementById('claimButton');
+        if (btn && config.ctaText) btn.textContent = config.ctaText;
+
+        if (config.brandColor) {
+          document.documentElement.style.setProperty('--brand-color', config.brandColor);
+        }
+
+        if (btn && config.affiliateLink) {
+          btn.addEventListener('click', () => {
+            const params = new URLSearchParams(window.location.search);
+            const subid = params.get('subid') || 'default';
+
+            if (config.useExitTracking) {
+              fetch('/exit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  u: config.exit_u,
+                  p: config.exit_p,
+                  ttclid: params.get('ttclid'),
+                }),
+              });
+            }
+
+            const a = document.createElement('a');
+            a.href = config.affiliateLink + encodeURIComponent(subid);
+            a.target = '_blank';
+            a.rel = 'noreferrer';
+            a.click();
+          });
+        }
+      } catch (err) {
+        console.error("Failed to load config:", err);
+      }
+    });
+  </script>
+</body>
+</html>
