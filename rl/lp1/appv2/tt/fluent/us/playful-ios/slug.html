@@ -561,7 +561,7 @@ fbq('track', 'PageView');
         document.documentElement.style.setProperty('--brand-color', config.brandColor);
       }
   
-      if (btn && config.affiliateLink) {fa
+      if (btn && config.affiliateLink) {
         btn.addEventListener('click', () => {
           const params = new URLSearchParams(window.location.search);
           const subid = params.get('subid') || 'default';
