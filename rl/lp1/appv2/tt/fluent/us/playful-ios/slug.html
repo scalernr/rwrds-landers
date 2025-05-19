@@ -16,7 +16,7 @@
         }
 
         body {
-            background: #fbe5c6;
+            background: #c6cafb;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -33,16 +33,16 @@
         }
 
         .reward-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(56, 72, 162, 0.95);
             border-radius: 24px;
             padding: 1rem;
             position: relative;
             z-index: 2;
             backdrop-filter: blur(10px);
-            border: 1px solid var(--brand-color)33;
+            border: 1px solid rgba(56, 72, 162, 0.33);
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 30px var(--brand-color)1a, 0 1px 8px var(--brand-color)33;
+            box-shadow: 0 10px 30px rgba(56, 72, 162, 0.1a), 0 1px 8px rgba(56, 72, 162, 0.33);
             animation: cardFloat 3s ease-in-out infinite;
         }
 
@@ -88,7 +88,7 @@
             font-size: 2.2rem;
             font-weight: 700;
             text-align: center;
-            color: #AA5800;
+            color: #1240c9;
             margin: 0rem 0 0rem 0;
             text-shadow: 0 4px 20px var(--brand-color)4d;
             animation: amountPulse 2s infinite;
@@ -385,41 +385,7 @@ fbq('track', 'PageView');
       </script>
       
     <script>
-        // Particles.js configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: 'var(--brand-color)' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: 'var(--brand-color)',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
+ 
 
         // Names for the name alert
         const NAMES = [
