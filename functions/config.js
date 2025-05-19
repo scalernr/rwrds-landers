@@ -17,12 +17,12 @@ export async function onRequest(context) {
   }
   if (referer.includes('/rl/lp1/appv2/tt/fluent/us/playful-ios/')) {
     return Response.json({
-      logoPath: "/assets/prewardslogo3.png",
+      logoPath: "/public/assets/prewardslogo3.png",
       headline: "Test apps and get paid!",
       ctaText: "Download Here",
-      brandColor: "#b6b1ef", // Playful purple
+      brandColor: "#b6b1ef",
       affiliateLink: "https://affrkr.com/?yte=h41EnWbqKhajken6sj5ZWUUYIr110aduvQJDRoz7h5U%3d&s1=",
-      useExitTracking: false,
+      useExitTracking: false
     });
   }
   return Response.json({
