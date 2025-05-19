@@ -22,9 +22,7 @@ export async function onRequest(context) {
       ctaText: "Download Here",
       brandColor: "#b6b1ef", // Playful purple
       affiliateLink: "https://affrkr.com/?yte=h41EnWbqKhajken6sj5ZWUUYIr110aduvQJDRoz7h5U%3d&s1=",
-      useExitTracking: true,
-      exit_u: "br",
-      exit_p: "IOSFUN"
+      useExitTracking: false,
     });
   }
   return Response.json({
