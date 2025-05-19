@@ -1,9 +1,11 @@
 export async function onRequest(context) {
-  const { pathname } = new URL(context.request.url);
+  const { request } = context;
+  const { pathname } = new URL(request.url);
+  const referer = request.headers.get('referer') || "";
 
-  console.log("pathname:", pathname); // ADD THIS LINE
+  console.log("referer:", referer);
 
-  if (pathname.includes('/rl/lp1/appv2/tt/fluent/us/blank/')) {
+  if (referer.includes('/rl/lp1/appv2/tt/fluent/us/blank/')) {
     return Response.json({
       logoPath: "/public/assets/prewardslogo3.png",
       headline: "Earn Rewards Using Your Phone",
