@@ -7,7 +7,7 @@ export async function onRequest(context) {
 
   if (referer.includes('/rl/lp1/appv2/tt/fluent/us/blank/')) {
     return Response.json({
-      logoPath: "/assets/prewardslogo3.png",
+      logoPath: "/public/assets/prewardslogo3.png",
       headline: "Earn Rewards Using Your Phone",
       ctaText: "Get Started",
       brandColor: "#FAC804",
@@ -18,7 +18,7 @@ export async function onRequest(context) {
   if (referer.includes('/rl/lp1/appv2/tt/fluent/us/playful-ios/')) {
     return Response.json({
       logoPath: "/public/assets/prewardslogo3.png",
-      headline: "Test apps and get paid!",
+      headline: "Test games and get paid!",
       ctaText: "Download Here",
       brandColor: "#b6b1ef",
       affiliateLink: "https://affrkr.com/?yte=h41EnWbqKhajken6sj5ZWUUYIr110aduvQJDRoz7h5U%3d&s1=",
@@ -26,7 +26,7 @@ export async function onRequest(context) {
     });
   }
   return Response.json({
-    logoPath: "/assets/default.png",
+    logoPath: "/public/assets/default.png",
     headline: "Claim Your Reward",
     ctaText: "Continue",
     brandColor: "#222",
