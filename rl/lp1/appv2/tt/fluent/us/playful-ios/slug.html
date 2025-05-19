@@ -341,7 +341,49 @@ fbq('track', 'PageView');
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        function initParticles() {
+          const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--brand-color').trim() || '#FAC804';
+      
+          particlesJS('particles-js', {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: brandColor },
+              shape: { type: 'circle' },
+              opacity: { value: 0.5 },
+              size: { value: 3, random: true },
+              line_linked: {
+                enable: true,
+                distance: 150,
+                color: brandColor,
+                opacity: 0.4,
+                width: 1
+              },
+              move: {
+                enable: true,
+                speed: 6,
+                out_mode: 'out'
+              }
+            },
+            interactivity: {
+              detect_on: 'canvas',
+              events: {
+                onhover: { enable: true, mode: 'repulse' },
+                onclick: { enable: true, mode: 'push' }
+              }
+            },
+            retina_detect: true
+          });
+        }
+      
+        window.addEventListener('load', () => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+          script.onload = initParticles;
+          document.body.appendChild(script);
+        });
+      </script>
+      
     <script>
         // Particles.js configuration
         particlesJS('particles-js', {
