@@ -543,5 +543,49 @@ fbq('track', 'PageView');
       a.click();
   });
 </script>
+<script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const res = await fetch('/config');
+      const config = await res.json();
+  
+      const logo = document.querySelector('.app-logo');
+      if (logo && config.logoPath) logo.src = config.logoPath;
+  
+      const headline = document.querySelector('.cash-text');
+      if (headline && config.headline) headline.textContent = config.headline;
+  
+      const btn = document.getElementById('claimButton');
+      if (btn && config.ctaText) btn.textContent = config.ctaText;
+  
+      if (config.brandColor) {
+        document.documentElement.style.setProperty('--brand-color', config.brandColor);
+      }
+  
+      if (btn && config.affiliateLink) {
+        btn.addEventListener('click', () => {
+          const params = new URLSearchParams(window.location.search);
+          const subid = params.get('subid') || 'default';
+  
+          if (config.useExitTracking) {
+            fetch('/exit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                u: config.exit_u,
+                p: config.exit_p,
+                ttclid: params.get('ttclid'),
+              }),
+            });
+          }
+  
+          const a = document.createElement('a');
+          a.href = config.affiliateLink + encodeURIComponent(subid);
+          a.rel = 'noreferrer';
+          a.target = '_blank';
+          a.click();
+        });
+      }
+    });
+  </script>
 </body>
 </html>
